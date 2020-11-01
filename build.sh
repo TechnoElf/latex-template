@@ -7,7 +7,7 @@ BUILD_FILE_SUFFIXES=("aux" "bbl" "bcf" "blg" "idx" "ilg" "ind" "ist" "lof" "log"
 ls chapters/*.tex | awk '{printf "\\input{%s}\n", $1}' > _chapters.tex
 
 # Compile the document
-pdflatex -interaction=nonstopmode $MAIN
+pdflatex -file-line-error -halt-on-error -interaction=nonstopmode $MAIN
 result=$?
 if [ $result -eq 0 ]; then
     pdflatex -interaction=nonstopmode $MAIN > /dev/null 2> /dev/null
