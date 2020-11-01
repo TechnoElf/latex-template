@@ -30,16 +30,16 @@ jobs:
           latexmk -pdf -file-line-error -halt-on-error -interaction=nonstopmode main.tex
       - uses: actions/upload-artifact@v2
         with:
-          name: out
-          path: out.pdf
+          name: main
+          path: main.pdf
       - name: Upload release asset
         uses: actions/upload-release-asset@v1
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
           upload_url: ${{ github.event.release.upload_url }}
-          asset_path: ./out.pdf
-          asset_name: out.pdf
+          asset_path: ./main.pdf
+          asset_name: main.pdf
           asset_content_type: application/pdf
       - name: Upload to Sync+Share
         continue-on-error: true
