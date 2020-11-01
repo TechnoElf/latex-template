@@ -25,23 +25,23 @@ jobs:
       - name: Set up build
         run: |
           ls chapters/*.tex | awk '{printf "\\input{%s}\n", $1}' > _chapters.tex
-      - name: Build LaTeX document
+      - name: Build document
         run: |
-          latexmk -pdf -file-line-error -halt-on-error -interaction=nonstopmode mathe-vorkurs.tex
+          latexmk -pdf -file-line-error -halt-on-error -interaction=nonstopmode main.tex
       - uses: actions/upload-artifact@v2
         with:
-          name: mathe-vorkurs
-          path: mathe-vorkurs.pdf
-      - name: Upload Release Asset
+          name: out
+          path: out.pdf
+      - name: Upload release asset
         uses: actions/upload-release-asset@v1
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
           upload_url: ${{ github.event.release.upload_url }}
-          asset_path: ./mathe-vorkurs.pdf
-          asset_name: mathe-vorkurs.pdf
+          asset_path: ./out.pdf
+          asset_name: out.pdf
           asset_content_type: application/pdf
       - name: Upload to Sync+Share
         continue-on-error: true
         run: |
-          cp mathe-vorkurs.pdf dav/ei-erstsemester/vorlesungen/mathe-vorkurs/loesungen-KEINE-GARANTIE/.
+          cp out.pdf dav/.

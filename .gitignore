@@ -21,7 +21,7 @@
 *_temp.tex
 .DS_Store
 *.swp
-compile.bash
 *.synctex.gz
 *.fdb_latexmk
 *.fls
+_chapters.tex
